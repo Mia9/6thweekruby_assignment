@@ -15,7 +15,7 @@ gem 'sinatra-activerecord'
 gem 'sinatra-flash'
 
 # For upload images ----only install after active record was created here
-#gem 'carrierwave' 
+gem 'carrierwave' 
 
 
 # User Authentication

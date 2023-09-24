@@ -2,7 +2,10 @@
 <h2>Movie title: <%= @movie.title%></h2>
 <h3>Director: <%= @movie.director%></h3>
 <h4>Release year: <%= @movie.publication_year%></h4>
-
+<p>Runtime: <%= @movie.runtime%> min</p>
+<p>Genre: <%= @movie.genre%></p>
+<p>Summary: <br>
+<%= @movie.description%></p>
 <% if @movie.reviews.any? %>
 	<p>
 	<% @movie.reviews.each do |review| %>

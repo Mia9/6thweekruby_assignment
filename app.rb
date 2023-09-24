@@ -2,9 +2,17 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'bcrypt'
 require 'sinatra/flash'
+
 require_relative 'models/movie'
 require_relative 'models/user'
 require_relative 'models/review'
+
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+
+CarrierWave.configure do |config|
+	config.root = "./public"
+end
 
 enable :sessions
 register Sinatra::Flash
@@ -14,10 +22,6 @@ get '/' do
 	erb :index
 end
 #-----------MOVIES-------------
-# get '/' do
-# 	@movies = Movie.all
-# 	erb :index
-# end
 
 get '/movies' do
 	@movies = Movie.all
@@ -50,8 +54,27 @@ post '/movies/add_review/:movie_id' do
 	end
 end
 
- #----------------PASSWORD, LOGIN, REGISTER PART-------------
- get '/register' do
+#----------------SEARCH BY TITLE MOVIES---------------------
+get '/search' do
+  @movie = Movie.find_by(title: params[:movie_title])
+  erb :movie
+end
+
+post '/search' do
+  @movie = Movie.find_by(title: params[:movie_title])
+  if @movie
+    redirect "/movies/#{@movie.id}"
+  else
+    redirect '/movies'
+  end
+end
+
+#---------------POPULAR MOVIES BY SCORE-----------------
+
+
+
+#----------------PASSWORD, LOGIN, REGISTER PART-------------
+get '/register' do
 	erb :register
 end
 

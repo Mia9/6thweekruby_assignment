@@ -1,10 +1,37 @@
-<h1>IMdB Simple Clone</h1>
-
-
+<section class="index-background">
 <% if user_signed_in? %>
 	<h3>Hello there! <%= current_user.username%></h3>	
 <%else%>
 	<h3>Welcome!</h3>
 <%end%>
-<a href="/movies">List of movies</a>
+<br>
+<!-- Below is to show 1st 10 movies -->
 
+<% @movies = Movie.take(10)%>
+<% if @movies.any? %>	
+  <div class="row">
+    <% @movies.each do |movie| %>
+      <div class="col" style="padding: 1px;">
+        <div class="card h-100 mb-4" style="margin-left: 15px;">
+            <div class="card text-white bg-dark mb-3">      
+              <h5 class="card-title mb-0"><%= movie.title %></h5>
+              <div class="card-body">
+                <p>Director: <%= movie.director %></p>
+                <p>Released: <%= movie.publication_year %></p>
+              </div>
+              <div class="card-footer text-end">
+                <a href="/movies/<%= movie.id%>" class="btn btn-primary">Details</a>
+              </div> 
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+		<p>
+			No movies found.
+		</p>
+<%end%>
+
+<a href="/movies">List of movies</a>
+</section>

@@ -1,12 +1,20 @@
-<% if @movies.any? %>
-	<% @movies.each do |movie| %>
-		<p>
-		Title: <%= movie.title %>
-		<br>
-		Director: <%= movie.director %>
-		<a href="/movies/<%= movie.id%>">Details</a>
-		</p>
-	<% end %>
+<% if @movies.any? %>	
+  <div class="row row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+    <% @movies.each do |movie| %>
+      <div class="col" style="padding: 6px;">
+        <div class="card h-100 mb-4" style="margin-left: 5px;">      
+          <h5 class="card-title mb-0"><%= movie.title %></h5> 
+          <div class="card-body">
+            <p>Director: <%= movie.director %></p>
+            <p>Released: <%= movie.publication_year %></p>
+          </div>
+          <div class="card-footer text-end">
+            <a href="/movies/<%= movie.id%>" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% else %>
 		<p>
 			No movies found.
@@ -14,3 +22,4 @@
 <%end%>
 
 <a href="/">Homepage</a>
+<a href="#" class="top">Back to Top &#8593;</a>
