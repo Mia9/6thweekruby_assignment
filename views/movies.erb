@@ -1,0 +1,16 @@
+<% if @movies.any? %>
+	<% @movies.each do |movie| %>
+		<p>
+		Title: <%= movie.title %>
+		<br>
+		Director: <%= movie.director %>
+		<a href="/movies/<%= movie.id%>">Details</a>
+		</p>
+	<% end %>
+<% else %>
+		<p>
+			No movies found.
+		</p>
+<%end%>
+
+<a href="/">Homepage</a>

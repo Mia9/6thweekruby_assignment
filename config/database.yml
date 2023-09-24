@@ -1,4 +1,6 @@
 development:
   adapter: postgresql
-  database: sinatra_active_record
+  database: 6thweek-assignment-sinatra
   host: localhost
+  user: postgres
+  password: 123456

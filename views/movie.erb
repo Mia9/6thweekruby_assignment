@@ -1,0 +1,28 @@
+
+<h2>Movie title: <%= @movie.title%></h2>
+<h3>Director: <%= @movie.director%></h3>
+<h4>Release year: <%= @movie.publication_year%></h4>
+
+<% if @movie.reviews.any? %>
+	<p>
+	<% @movie.reviews.each do |review| %>
+		<%= review.content %> <br>by <%= User.find(review.user_id).username %>. Rating: <%= review.score%>/10
+	<br>	
+		<%end%>
+	<%else%>
+	<p>No reviews yet.</p>
+
+<%end%>
+	</p>
+<br>
+
+<% if user_signed_in? %>
+	<form action="/movies/<%= @movie.id%>" method="post">
+	<input type="submit" value="Add Review">
+</form>	
+<%else%>
+	<h4>Please <a href="/login">log in</a> to add reviews.</h4>
+<%end%>
+
+
+	
